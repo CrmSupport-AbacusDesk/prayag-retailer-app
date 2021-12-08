@@ -1,0 +1,105 @@
+<ion-view view-title="Add Payment">
+    
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+    
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <a href="#/home" class="button button-icon icon ion-home fff font-24"></a>
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+    
+    <ion-content>
+        
+        
+        <div class="user-list date-format">
+            <div class="list">
+                <!-- looP start -->
+                <div class="item pl-16" style="border: 0px;">
+                    <a>
+                        <h2>Grover Sanitary & Harware Store</h2>
+                        <p class="mt-5"><span class="pr-10 icon-color">Outstanding   &nbsp;  &nbsp;:</span><i class="inr-icon"></i><span class="orange-color pl-20 font-16">1600</span></p>
+                    </a>
+                </div>
+                <!-- looP end -->
+            </div>        
+        </div>
+        
+        <div class="addpay-form pb-20">
+            <div class="cs-input padding-16 no-padding-bottom">
+                <input type="text" placeholder="Total Amount">
+            </div>
+            
+            <label class="item-input item-select cs-select">
+                <div class="input-label w140p">
+                    Mode of Payment
+                </div>
+                <select class="no-padding-left pr-65">
+                    <option>Call</option>
+                    <option selected>Meeting</option>
+                </select>
+            </label>
+            
+            <div class="cs-input padding-16 no-padding-bottom">
+                <input type="text" placeholder="Cheque Number">
+            </div>
+            
+            <label class="item-input item-select cs-date cs-calender">
+                <div class="input-label">
+                    Cheque Date
+                </div>
+                <input type="date" class="no-padding-left">
+            </label>
+        </div>
+        
+        
+        
+        
+        
+        
+        <div class="input-submit padding-16">
+            <button>SUBMIT</button>
+        </div>
+        
+        
+    </ion-content>
+    <ion-footer-bar position="bottom" keyboard-attach class="home-tabs">
+        <div class="custome-tabs">
+            <a href="#/tab/expense">
+                <div class="outer">
+                    <div class="innear">
+                        <i class="material-icons">account_balance_wallet</i>
+                        <p>EXPENSE</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#/tab/followup">
+                <div class="outer">
+                    <div class="innear">
+                        <i class="material-icons">contact_phone</i>
+                        <p>FOLLOWUP</p>
+                    </div>
+                </div>
+            </a>
+            <a ng-click="opensp()" class="active">
+                <div class="outer">
+                    <div class="innear relative">
+                        <i class="inr-icon-light ab-center font-0 mt-3">inr</i>
+                        <p class="mt-24">PAY MASTER</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#.">
+                <div class="outer">
+                    <div class="innear">
+                        <i class="material-icons">desktop_mac</i>
+                        <p>DASHBOARD</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

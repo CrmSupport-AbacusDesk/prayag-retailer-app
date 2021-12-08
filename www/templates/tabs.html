@@ -1,0 +1,122 @@
+<!--
+  Create tabs with an icon and label, using the tabs-positive style.
+  Each tab's child <ion-nav-view> directive will have its own
+    navigation history that also transitions its views in and out.
+  -->
+  <ion-tabs class="tabs-icon-top tabs-color-active-positive">
+    
+    <!-- Home Tab -->
+    <ion-tab title="HOME" icon-off="home-icon" icon-on="home-icon-active" href="#/tab/home">
+      <ion-nav-view name="tab-home"></ion-nav-view>
+    </ion-tab>
+    
+    
+    <!-- Profile Tab -->
+    <ion-tab title="PROFILE" icon-off="profile-icon" icon-on="profile-icon-active" ng-click="profile_detail()">
+      <ion-nav-view name="tab-profile"></ion-nav-view>
+    </ion-tab>
+    
+    <!-- Feedback Tab -->
+    <ion-tab title="FEEDBACK" hidden="true" icon-off="feedback-icon" icon-on="feedback-icon-active" href="#/feedback">
+      <ion-nav-view name="tab-feedback"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Add Location Tab -->
+    <ion-tab title="ADD LOCATION" icon-off="location-icon" icon-on="location-icon-active" ng-click="point_my_loc()">
+      <ion-nav-view name="tab-feedback"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Logout Tab Test -->
+    <ion-tab title="LOGOUT" hidden="true" icon-off="feedback-icon" icon-on="feedback-icon-active" ng-click="logout()">
+      <ion-nav-view name="tab-feedback"></ion-nav-view>
+    </ion-tab>
+    
+    <!-- Distributor Tab -->
+    <ion-tab title="DISTRIBUTOR" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/distributor">
+      <ion-nav-view name="tab-distributor"></ion-nav-view>
+    </ion-tab>
+    
+    <!-- Orders Tab -->
+    <ion-tab title="Orders" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/orders">
+      <ion-nav-view name="tab-orders"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Add Product Tab -->
+    <ion-tab title="Add Order" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/addorder">
+      <ion-nav-view name="tab-addorder"></ion-nav-view>
+    </ion-tab>
+    
+    
+    <!-- Order Detail Tab -->
+    <ion-tab title="Order Detail" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/orderdt">
+      <ion-nav-view name="tab-orderdt"></ion-nav-view>
+    </ion-tab>
+    
+    <!-- Confirm Order Tab -->
+    <ion-tab title="Confirm Order" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/confirmord">
+      <ion-nav-view name="tab-confirmord"></ion-nav-view>
+    </ion-tab>
+    
+    
+    <!-- Payments Tab -->
+    <ion-tab title="Payments" hidden="true" icon-off="retailer-icon" icon-on="retailer-icon-active" href="#/tab/payments">
+      <ion-nav-view name="tab-payments"></ion-nav-view>
+    </ion-tab>
+    
+    
+    
+    <!-- POP & Gifts Tab -->
+    <ion-tab title="POP" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/pop">
+      <ion-nav-view name="tab-pop"></ion-nav-view>
+    </ion-tab>
+   
+    <!--Announcements Tab -->
+    <ion-tab title="Announcements" hidden="true" icon-off="retailer-icon" icon-on="retailer-icon-active" href="#/tab/announcement">
+      <ion-nav-view name="tab-announcement"></ion-nav-view>
+    </ion-tab>
+
+    <!--Announcements Detail Tab -->
+    <ion-tab title="Announcements Detail" hidden="true" icon-off="retailer-icon" icon-on="retailer-icon-active" href="#/tab/announcement-detail">
+      <ion-nav-view name="tab-announcement-detail"></ion-nav-view>
+    </ion-tab>
+    
+    <!--IMG DOCS Tab -->
+    <ion-tab title="img & docs" hidden="true" icon-off="retailer-icon" icon-on="retailer-icon-active" href="#/tab/imgdoc">
+      <ion-nav-view name="tab-imgdoc"></ion-nav-view>
+    </ion-tab>
+    <!--Gallery Tab -->
+    <ion-tab title="gallery" hidden="true" icon-off="retailer-icon" icon-on="retailer-icon-active" href="#/tab/gallery">
+      <ion-nav-view name="tab-gallery"></ion-nav-view>
+    </ion-tab>
+
+    <!-- All Order Detail Tab -->
+    <ion-tab title="Order Detail" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/order-details">
+      <ion-nav-view name="tab-order-details"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Scheme List" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/scheme_list">
+      <ion-nav-view name="tab-scheme_list"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="My Status" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/scheme_my_status">
+      <ion-nav-view name="tab-scheme_my_status"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Scheme List" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/schemependingdetail">
+      <ion-nav-view name="tab-schemependingdetail"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Scheme List" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/schemecompletedetail">
+      <ion-nav-view name="tab-schemecompletedetail"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Status List" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/status_list">
+      <ion-nav-view name="tab-status_list"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Upload Invoice" hidden="true" icon-off="pop-icon-active" icon-on="pop-icon-active" href="#/tab/upload_invoice">
+      <ion-nav-view name="tab-upload_invoice"></ion-nav-view>
+    </ion-tab>
+    
+  </ion-tabs>
+  

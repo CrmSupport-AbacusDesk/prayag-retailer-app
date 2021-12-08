@@ -1,0 +1,39 @@
+<ion-view view-title="My Invoices">
+    
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="ceneter">
+        <a href="#/tab/home" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    
+    <ion-content style="background: #F6F6F6;">
+        
+        <div class="data-not-found" ng-hide="invoice_lists.length">
+            <div class="outer">
+                <div class="innear">
+                    <img src="img/data-not-found.svg" alt="">
+                    <h2>Temporarily , No Invoice Available</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="padding-16" ng-if="invoice_lists.length">
+            <div class="list-box {{data.status == 'Pending' || data.status == 'Suspect' ? 'pending' : 'approved'}}" ng-repeat = "data in invoice_lists">
+                <div class="head-content" ng-click="go_to_invoice_detail(data.id)">
+                    <p>{{formatDate(data.date_created) | date:'d MMM y'}}</p>
+                    <p>#INV-{{data.invoice_no}}</p>
+                </div>
+                <div class="center-content">
+                    <p ng-click="go_to_invoice_detail(data.id)">{{data.party_name}}</p>
+                    <a ng-click="delete_invoice(data.id, $index)" ng-if="data.status == 'Pending' || data.status == 'Suspect' "><i class="material-icons">delete_sweep</i></a>
+                </div>
+                <div class="bottomcontent" ng-click="go_to_invoice_detail(data.id)">
+                    <ul>
+                        <li> &#8377;  {{data.invoice_amount}}</li>
+                        <li class="">{{data.status}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <a class="fix-btn" href="#/tab/upload_invoice"><i class="material-icons">add</i></a>
+</ion-view>

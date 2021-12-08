@@ -1,0 +1,54 @@
+<ion-modal-view class="cs-modal animated">
+
+    <ion-content>
+
+        <div class="modal-data">
+            <div class="outer">
+                <div class="innear">
+
+                    <div class="gst-details pt-2" style="background: #fff;">
+
+                        <div class="add-product-listing pl-16 pr-16">
+                            <!-- Loop Start -->
+                            <a class="list" ng-repeat="val in distr_arr | filter: { dist : distt_name}:true">
+                                <div class="details">
+                                    <div class="bx-1 mb-10 pr-50">
+                                        <p class="text-left">
+                                            <strong># {{val.seg_name}}</strong>
+                                        </p>
+                                        <p class="rate">
+                                            <i class="inr-icon ml-10 mt-6"></i>
+                                            <span class="pl-25 orange-color">{{val.seg_price_disc}}</span>
+                                        </p>
+                                    </div>
+                                    <div class="bx-1 mb-10 pr-50">
+                                        <p class="text-left">GST ({{val.gst}}%)</p>
+                                        <p class="rate">
+                                            <i class="inr-icon ml-10 mt-6"></i>
+                                            <span class="pl-25 orange-color">{{val.gst_amt}}</span>
+                                        </p>
+                                    </div>
+                                    <div class="bx-1 mb-10 pr-50">
+                                        <p class="text-left">Total</p>
+                                        <p class="rate">
+                                            <i class="inr-icon ml-10 mt-6"></i>
+                                            <span class="pl-25 orange-color">{{val.after_gst_amt}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Loop End... -->
+                        </div>
+
+
+                        <div class="input-submit padding-16">
+                            <a ng-click="close_gst_modal()">ok</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

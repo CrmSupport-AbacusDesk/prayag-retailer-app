@@ -1,0 +1,46 @@
+<ion-modal-view class="cs-modal animated">
+    <ion-content>
+
+        <div class="modal-data" >
+            <div class="outer">
+                <div class="innear">
+                    <div class="dat">
+                        <div class="upload-plus-icon padding-16 no-padding-bottom pt-0">
+                            <div class="">
+                                Upload Invoice <span class="redc">*</span>
+                            </div>
+                            
+                            <ul>
+                                <li ng-repeat="mediadatas in mediaData">
+                                    
+                                    <label>
+                                        
+                                        <button type="button" class="opt-delete" ng-click="delete_img($index)">
+                                            <i class="material-icons">delete_sweep</i>
+                                        </button type="button">
+                                        
+                                         <img src="{{mediadatas.src}}"> 
+                                        
+                                    </label>
+                                </li>
+                                
+                                <li>
+                                    <div class="label">
+                                        <button type="button" ng-click="camera(1);">
+                                            <i class="material-icons">add</i>
+                                        </button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="m-16">
+                            <button   class="scheme-btn mt-32" ng-click="upload_order_inv();closertd();" >SAVE</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ion-content>
+</ion-modal-view>

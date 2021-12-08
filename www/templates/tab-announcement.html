@@ -1,0 +1,48 @@
+<ion-view view-title="Announcements" >
+
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <!-- <a ng-click="order_list(0)" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a> -->
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <!-- <a href="#/tab/home" class="button button-icon icon ion-home fff font-24"></a> -->
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+
+    <ion-content>
+        <div class="data-not-found" ng-hide="myNoticeList.length">
+            <div class="outer">
+                <div class="innear">
+                    <img src="img/data-not-found.svg" alt="">
+                    <h2>Temporarily , No Announcement Available</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-listing ann-list" ng-if="myNoticeList.length">
+            <!-- Loop Start -->
+            <div class="list" ng-repeat="list in myNoticeList" ng-click="notice_detail(list.id)">
+                <div class="heading-header pl-10">
+                    <div class="order-no">
+                        <p><strong>{{list.heading}}</strong></p>
+                    </div>
+                    <button class="download h40" style="line-height: 40px;">
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                </div>
+                
+                <div class="details">
+                    <div>
+                        <p class="pr-70" style="color: #000;">{{list.description}} <span class="right absolute right-10" style="color: #999">{{formatDate(list.notice_date) | date: 'dd MMM y'}}</span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Loop End... -->
+        </div>        
+    </ion-content>
+    
+    
+</ion-view>

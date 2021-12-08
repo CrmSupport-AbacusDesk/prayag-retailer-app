@@ -1,0 +1,38 @@
+<ion-view view-title="Order Detail" >
+
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <ion-content>
+        <div class="user-list small-icon">
+            <div class="list">
+                <!-- looP start -->
+                <div class="item item-avatar" ng-repeat="value in order_lst">
+                  <img ng-if="value.distr_img" src="{{upload_url}}{{value.distr_img}}">
+                    <div ng-hide="value.distr_img" class="info-icon">
+                      <div class="outer">
+                          <div class="innear">
+                              <h1 class="font-24">{{value.dist[0]}}</h1>
+                          </div>
+                      </div>
+                    </div>
+                    <a href="#.">
+                        <h2 class="mt-5">{{value.dist}}</h2>
+                        <p class="tl-sales pr-70 mt-5">Order Value : <i class="inr-icon ml-10 mt-5"></i><span class="pl-25">{{value.after_gst_amt}}</span></p>
+                    </a>
+                    <a class="gst-btn" ng-click="open_gst_modal(value.dist)">GST</a>
+                </div>
+                <!-- looP end -->
+
+            </div>
+        </div>
+
+        <div class="input-submit padding-16">
+            <a ng-if="!show_proceed_btn" href="#/tab/confirmord">PROCEED</a>
+            <a ng-if="show_proceed_btn" ng-click="show_last_payment()">PROCEED</a>
+        </div>
+    </ion-content>
+</ion-view>

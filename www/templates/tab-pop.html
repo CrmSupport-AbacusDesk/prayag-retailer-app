@@ -1,0 +1,54 @@
+<ion-view view-title="POP & Gift" >
+    
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <!-- <a ng-click="order_list(0)" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a> -->
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <!-- <a href="#/tab/home" class="button button-icon icon ion-home fff font-24"></a> -->
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+
+    <ion-content>
+    
+    <div class="data-not-found" ng-hide="myPopGiftList.length">
+        <div class="outer">
+            <div class="innear">
+                <img src="img/data-not-found.svg" alt="">
+                <h2>Temporarily , No POP & GIFT Available</h2>
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="list in myPopGiftList" ng-if="myPopGiftList.length">
+        <div class="heading{{($index != 0 ? ' mt-15' : '')}}" ng-if="myPopGiftList[$index].date_created != myPopGiftList[$index-1].date_created">
+            <h2>{{formatDate(list.date_created) | date: 'dd-M-yyyy'}}</h2>
+        </div>
+        <div class="user-list pop-list" >
+            <div class="list">
+                <!-- looP start -->
+                <div class="item item-avatar">
+                    <img ng-src="{{upload_url+list.pop_image}}" fallback-src="img/tabs-icons/pop-icon-active.svg">
+                    <a>
+                        <h2 class="font-12">{{list.item_name}}</h2>
+                        <h2 class="font-12 mt-3"><strong class="w90">QTY</strong><strong>: &nbsp; &nbsp;</strong><span class="icon-color">{{list.qty}} Pcs.</span></h2>
+                        <h2 class="font-12 mt-3"><strong class="w90">Received From</strong><strong> : &nbsp; &nbsp;</strong><span class="icon-color">{{list.name}}</span></h2>
+                        <h2 class="font-12 mt-3" ng-if="list.delivery_note"><strong class="w90">Delivery Note</strong><strong> : &nbsp; &nbsp;</strong><span class="icon-color">{{list.delivery_note}}</span></h2>
+                    </a>
+
+                    <div class="input-submit" ng-if="list.received==1">
+                        <input type="submit" ng-click="gift_update_list(list.id,'1')" value="RECEIVE YOUR GIFT">
+                    </div>
+
+                </div>
+                <!-- looP end -->
+
+            </div>
+            <!-- looP end -->
+        </div>
+    </div>
+    </ion-content>
+</ion-view>

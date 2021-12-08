@@ -1,0 +1,68 @@
+<ion-view view-title="Distributor" >
+    
+     <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <!-- <a ng-click="order_list(0)" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a> -->
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <!-- <a href="#/tab/home" class="button button-icon icon ion-home fff font-24"></a> -->
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+
+    <div class="bar bar-subheader custome-search">
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="material-icons">search</i>
+                <input type="text" placeholder="Search" ng-model="search">
+            </label>
+            <div class="mice">
+                <button><i class="material-icons">mic</i></button>
+            </div>
+        </div>
+    </div>
+    
+    <ion-content class="has-searchheader">
+	<ion-refresher pulling-text="Pull to refresh" on-refresh="distributor_list()">
+            <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
+      <div class="data-not-found" ng-hide="myDistList.length">
+            <div class="outer">
+                <div class="innear">
+                    <img src="img/data-not-found.svg" alt="">
+                    <h2>Temporarily , No Distributor Available</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-list small-icon" ng-if="myDistList.length">
+            <div class="list">
+                <!-- looP start -->
+                <a class="item item-avatar" ng-click="dist_detail({{list.id}})" ng-repeat="list in myDistList | filter:search">
+
+                    <img src="{{upload_url+list.dr_image}}" ng-if="list.dr_image">
+
+                    <div class="info-icon" ng-if="!list.dr_image">
+                        <div class="outer">
+                            <div class="innear">
+                                <h1 class="font-16">{{list.dr_name[0]}}</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="mt-5">{{list.dr_name}}</h2>
+
+                    <p class="tl-sales" ng-if="list.contact_person">Contact Person : {{list.contact_person}}</p>
+                    
+                    <button class="button button-icon icon ion-chevron-right font-12 blue-color"></button>
+                </a>
+                <!-- looP end -->
+            </div>
+        </div>
+        
+    </ion-content>
+  
+</ion-view>

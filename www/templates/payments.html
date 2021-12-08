@@ -1,0 +1,77 @@
+<ion-view view-title="Payments">
+
+  <!-- BACKBTN ICON START -->
+  <ion-nav-buttons side="left">
+    <a href="#/distributor-det" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+  </ion-nav-buttons>
+  <!-- BACKBTN ICON END-->
+
+  <!-- HOME ICON START -->
+  <ion-nav-buttons side="right">
+    <a href="#/tab/home" class="button button-icon icon ion-home fff font-18"></a>
+  </ion-nav-buttons>
+  <!-- HOME ICON END-->
+
+  <ion-content>
+
+    <div class="total-ds tl-out">
+      <div class="ttl">
+        <p>OUTSTANDING</p>
+      </div>
+      <div class="rate">
+        <p><i class="inr-icon"></i>
+          <span ng-if="myDistPaymentList[0].balance">{{myDistPaymentList[0].balance}}</span>
+          <span ng-hide="myDistPaymentList[0].balance">0</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="user-list date-format paymaster-list">
+     <div class="list">
+      <div ng-repeat="list in myDistPaymentList">
+        <!-- looP start -->
+        <div class="item item-avatar pb-6">
+          <div class="date-info-icon">
+            <h2>{{formatDate(list.date_created)|  date: 'dd'}}</h2>
+            <p>{{formatDate(list.date_created)|  date: 'MMM'}}</p>
+          </div>
+
+          <a>
+            <p class="mmt-4" ng-if="list.mode"><strong class="w90">Payment Mode </strong><strong>: &nbsp;</strong> <span>{{list.mode}}</span></p>
+
+            <p class="mmt-4" ng-if="list.order_id != 0"><strong class="w90">Order No. </strong><strong>: &nbsp;</strong> <span>{{list.order_id}}</span></p>
+
+            <p class="mmt-3" ng-if="list.payment_amount"><strong class="w90">Amount </strong><strong>: &nbsp;</strong> <i class="inr-icon mt-4"></i><span class="orange-color pl-15">{{list.payment_amount}}</span></p>
+
+            <p class="mmt-3" ng-if="list.order_amount"><strong class="w90">Order Value </strong><strong>: &nbsp;</strong> <i class="inr-icon mt-4"></i><span class="orange-color pl-15">{{list.order_amount}}</span></p>
+          </a>
+
+        </div>
+        <!-- looP end -->
+
+        <div class="item bal" ng-if="myDistPaymentList[$index+1].balance">
+          <div class="total">
+            <h2>Bal. &nbsp; <i class="inr-icon"></i>
+              <span ng-if="myDistPaymentList[$index+1].balance">{{myDistPaymentList[$index+1].balance}}</span>
+              <span ng-hide="myDistPaymentList[$index+1].balance">0</span>
+            </h2>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer-bar position="bottom" keyboard-attach class="dl-list-link">
+  <ul>
+    <li>
+      <a ng-click="order_list({{myDistDetail.id}})">ORDER LIST</a>
+    </li>
+    <li>
+      <a ng-click="payment_dist_list({{myDistDetail.id}})">PAYMENT LIST</a>
+    </li>
+  </ul>
+</ion-footer>
+</ion-view>

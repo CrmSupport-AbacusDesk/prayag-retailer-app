@@ -1,0 +1,230 @@
+<ion-view view-title="Become a Partner" hide-nav-bar="true">
+    <ion-content class="become-partner">
+        <div class="header">
+            <!-- BACKBTN ICON START -->
+            <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff" style="z-index:9;"></a>
+            <!-- BACKBTN ICON END... -->
+            <div class="logo text-center animated pulse">
+                <img src="img/white-logo.svg" alt="">
+            </div>
+        </div>
+
+        <style type="text/css">
+            .dnone{display: none}
+            .dherit{display: inherit;}
+            sup{color:#f00;font-size: 12px;top: -2px;}
+        </style>
+
+        <div class="form-data">
+            <h2 class="heading-c">Become a Partner</h2>
+
+        <form name="Addform">
+            <div class="b-partner" ng-class="pageone==true ? '' : 'dnone'">
+                <div class="heading">
+                    <h2>Basic Information</h2>
+                </div>
+
+                <ul>
+                    <li>
+                        <label>Counter Name <sup>*</sup></label>
+                        <input type="text" ng-model="signup_data.dr_name">
+                    </li>
+                    <li>
+                        <label>Contact Person <sup>*</sup></label>
+                        <input type="text" ng-model="signup_data.contact_person">
+                    </li>
+                    <li>
+                        <label>Mobile No.1 <sup>*</sup></label>
+                        <input type="number" ng-model="signup_data.contact_1" name="mob1" maxlength="10" minlength="10">
+                        <span class="error-left relative" ng-show="Addform.mob1.$error.minlength">* Mobile No. not Valid</span>
+                        <span class="error-left relative" ng-show="Addform.mob1.$error.maxlength">* Mobile No. not Valid</span>
+                    </li>
+                    <li>
+                        <label>Mobile No.2</label>
+                        <input type="number" ng-model="signup_data.contact_2" name="mob2" maxlength="10" minlength="10">
+                        <span class="error-left relative" ng-show="Addform.mob2.$error.minlength">* Mobile No. not Valid</span>
+                        <span class="error-left relative" ng-show="Addform.mob2.$error.maxlength">* Mobile No. not Valid</span>
+                    </li>
+                    <li>
+                        <label>Landline No.</label>
+                        <input type="number" ng-model="signup_data.landline">
+                    </li>
+                    <li>
+                        <label>GST Number</label>
+                        <input type="text" ng-model="signup_data.gst">
+                    </li>
+                    <li>
+                        <label>Date of Birth</label>
+                        <label>
+                            <input class="no-padding-left h30" style="border: solid 1px #ccc;" type="date" ng-model="signup_data.dob">
+                        </label>
+                    </li>
+                    <li>
+                        <label>Email</label>
+                        <input type="email" ng-model="signup_data.email">
+                    </li>
+                    <li>
+                        <label>Interested Type <sup>*</sup></label>
+                        <select ng-model="signup_data.int_type" required>
+                              <option value="">Interested Type</option>
+                              <option>Confirmed</option>
+                              <option>Waiting</option>
+                              <option>Not Interested</option>
+                        </select>
+                    </li>
+                    <li style="text-align: center; margin-bottom: 0px !important;" ng-if="signup_data.int_type && signup_data.contact_1 && signup_data.dr_name && signup_data.contact_person">
+                        <button class="go" ng-click="go_one()">GO</button>
+                    </li>
+                </ul>
+            </div>
+        </form>
+
+            <div class="b-partner animated bounceInRight" ng-class="pagetwo==true ? 'dherit' : 'dnone'" >
+                <div class="heading">
+                    <h2>Address Information</h2>
+                </div>
+
+                <ul>
+                    <li><h1>Billing Address</h1></li>
+                    <li>
+                        <label>State <sup>*</sup></label>
+                            <select ng-model='signup_data.state' ng-change="get_signup_district(signup_data.state,1)" >
+                                <option value="">Select State</option>
+                                <option ng-repeat="val in shareallstates">{{val.state_name}}</option>
+                            </select>
+                    </li>
+                    <li>
+                        <label>District <sup>*</sup></label>
+                            <select ng-model='signup_data.district_name' ng-change="get_signup_city(signup_data.district_name,signup_data.state,1)" >
+                                <option value="">Select District</option>
+                                 <option ng-repeat="val in sharealldistrict">{{val.district_name}}</option>
+                            </select>
+                    </li>
+                    <li>
+                        <label>City <sup>*</sup></label>
+                            <select ng-model='signup_data.city' ng-change="get_signup_area(signup_data.city,signup_data.state,1)" >
+                                 <option value="">Select City</option>
+                                 <option ng-repeat="val in shareallcity">{{val.city}}</option>
+                            </select>
+                    </li>
+                    <li>
+                        <label>Street <sup>*</sup></label>
+                        <textarea name="" ng-model="signup_data.street"></textarea>
+                    </li>
+                    <li>
+                        <label>Area <sup>*</sup></label>
+                            <select ng-model='signup_data.area' ng-change="get_signup_pincode(signup_data.area,signup_data.state,1)" >
+                                 <option value="">Select Area</option>
+                                 <option ng-repeat="val in shareallarea">{{val.area}}</option>
+                            </select>
+                    </li>
+                    <li>
+                        <label>Postal Code <sup>*</sup></label>
+                            <input type="text" placeholder="Pincode" ng-model="signup_data.pincode">
+                    </li>
+                    <li>
+                        <h1>Shipping Address</h1>
+                    </li>
+                    <li>
+                        <label class="left pr-30">Same as Billing Address</label>
+                            <label class="left pr-30">
+                              <input name="group1" type="radio"  class="left mt-2 mr-5" ng-click="same_ship_as_bill_add_lead(1)"/>
+                              <span>Yes</span>
+                            </label>
+                            <label class="left">
+                              <input name="group1" type="radio"  class="left mt-2 mr-5" ng-click="same_ship_as_bill_add_lead(2)"/>
+                              <span>No</span>
+                            </label>
+                          <div style="clear: both;"></div>
+                    </li>
+
+                <span ng-if="show_ship">
+                    <li>
+                        <label>Shipping State</label>
+                            <select ng-model='signup_data.ship_state' ng-change="get_signup_district(signup_data.ship_state,2)" >
+                                <option value="">Select State</option>
+                                <option ng-repeat="val in shareallstates">{{val.state_name}}</option>
+                            </select>
+                    </li>
+                    <li>
+                        <label>Shipping District</label>
+                            <select ng-model='signup_data.ship_district_name' ng-change="get_signup_city(signup_data.ship_district_name,signup_data.ship_state,2)" >
+                                <option value="">Select District</option>
+                                 <option ng-repeat="val in shareallshipdistrict">{{val.district_name}}</option>
+                            </select>
+                    </li>
+                    <li>
+                        <label>Shipping City</label>
+                            <select ng-model='signup_data.ship_city' ng-change="get_signup_area(signup_data.ship_city,signup_data.ship_state,2)" >
+                                 <option value="">Select City</option>
+                                 <option ng-repeat="val in shareallshipcity">{{val.city}}</option>
+                            </select>
+                    </li>
+                    <li>
+                        <label>Shipping Street</label>
+                        <textarea name="" ng-model="signup_data.ship_street"></textarea>
+                    </li>
+                    <li>
+                        <label>Shipping Area</label>
+                            <select ng-model='signup_data.ship_area' ng-change="get_signup_pincode(signup_data.ship_area,signup_data.ship_state,2)" >
+                                 <option value="">Select Area</option>
+                                 <option ng-repeat="val in shareallshiparea">{{val.area}}</option>
+                            </select>
+                    </li>
+                    <li>
+                        <label>Shipping Postal Code</label>
+                        <input type="text" placeholder="Pincode" ng-model="signup_data.ship_pincode" >
+                    </li>
+                </span>
+                    <li style="text-align: center; margin-bottom: 0px !important;" ng-if="signup_data.state && signup_data.district_name && signup_data.city && signup_data.street && signup_data.area && signup_data.pincode">
+                        <button ng-click="go_two()" class="go">GO</button>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="b-partner animated bounceInRight" ng-class="pagethree==true ? 'dherit' : 'dnone'">
+                <div class="heading">
+                    <h2>Profile Information</h2>
+                </div>
+
+                <ul>
+                    <li>
+                        <label>Description</label>
+                        <textarea name="" ng-model="signup_data.desc"></textarea>
+                    </li>
+                </ul>
+
+                <div class="upload-plus-icon padding-16 no-padding-bottom">
+                    <div class="input-label w100">
+                        Upload Picture
+                    </div>
+                        <ul>
+                            <li>
+                                <div class="label" ng-click="camera_click(3)">
+                                    <button type="button">
+                                        <i class="material-icons">add</i>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="relative" ng-if="mediaData[0].src">
+                                <label>
+                                    <img src="{{mediaData[0].src}}">
+                                </label>
+                            </li>
+                        </ul>
+                </div>
+
+                <ul class="no-padding-bottom">
+                    <li style="margin: 0px !important;">
+                        <div class="input-submit">
+                            <input type="submit" value="submit" ng-style="{'opacity' : (signup_data.desc && mediaData[0].src) ? 1 : 0.5}"  ng-click="(signup_data.desc && mediaData[0].src) ? save_lead() : ''">
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

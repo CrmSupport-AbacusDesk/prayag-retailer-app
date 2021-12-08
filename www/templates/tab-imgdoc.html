@@ -1,0 +1,73 @@
+<ion-view view-title="Image & Document">
+  
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <!-- <a ng-click="order_list(0)" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a> -->
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <!-- <a href="#/tab/home" class="button button-icon icon ion-home fff font-24"></a> -->
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+
+    <ion-content>
+        
+        <label class="item-input cs-input pr-16">
+            <div class="input-label">
+                Title
+            </div>
+           <input type="text" ng-model="data.title">
+        </label>
+
+
+        <div class="upload-plus-icon padding-16 no-padding-bottom">
+            <div class="input-label w100">
+                Upload Picture
+            </div>
+
+            <ul>
+                <li ng-repeat="mediadatas in mediaData" >
+                    <label>
+                        <img src="{{mediadatas.src}}">
+                    </label>
+                </li>
+
+                <li>
+                    <div class="label">
+                        <button type="button" ng-click="camera_click(1);">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="input-submit padding-16">
+            <a ng-click="mediaData[0].src && data.title? doc_upload():'';" ng-style="{'opacity':mediaData[0].src && data.title? 1 : 0.5}">SUBMIT</a>
+        </div>
+
+
+        <div class="album-type" ng-repeat="list in myDocAddList">
+            <a ng-click="doc_add_gallary_list(list.document_title);" class="ab-headeing" >
+                <div class="heading">
+                    <h2>{{list.document_title}}</h2>
+                </div>
+                <i class="material-icons">keyboard_arrow_right</i>
+            </a>
+
+            <a ng-click="doc_add_gallary_list(list.document_title);" class="last-upload">
+                <span class="counter">{{list.count}}</span>
+                <div class="img-icon">
+                    <div class="outer">
+                        <div class="innear">
+                            <img src="{{(list.image_name) ? upload_url + list.image_name : '' | trustUrl }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </ion-content>
+    
+</ion-view>

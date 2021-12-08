@@ -1,0 +1,309 @@
+<ion-view view-title="Order Detail">
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <a href="#/tab/home" class="button button-icon icon ion-home fff font-18"></a>
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+
+    <ion-content ng-class="myDistAllOrderDetail.dist_id != 0 ? 'mb-45' : ''">
+
+        <div class="order-listing">
+            <a class="list">
+                <div class="heading-header">
+                    <div class="date">
+                        <span class="orange-color">{{formatDate(myDistAllOrderDetail.order_date)|  date: 'dd'}}</span>
+                        <br>{{formatDate(myDistAllOrderDetail.order_date)|  date: 'MMM'}}
+                    </div>
+                    <div class="order-no">
+                        <p><strong>Order No. &nbsp;: &nbsp;</strong> #{{myDistAllOrderDetail.order_id}}</p>
+                        <!-- <p class="status">
+                            <strong>{{myDistAllOrderDetail.order_status}}</strong>
+                        </p> -->
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="bx-2">
+                        <p>
+                            <strong>Created By</strong>
+                        </p>
+                        <p class="rate">
+                            <span>{{myDistAllOrderDetail.order_creator}}</span>
+                        </p>
+                    </div>
+                    <div class="bx-2">
+                        <p>
+                            <strong>MRP</strong>
+                            <!-- <strong class="pl-25">{{myDistAllOrderDetail.order_qty}}</strong> -->
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{myDistAllOrderDetail.seg_tot_mrp | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2">
+                        <p>
+                            <strong>Discount Amount</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{myDistAllOrderDetail.seg_tot_mrp - myDistAllOrderDetail.seg_total | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2">
+                        <p>
+                            <strong>Sub Total</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{myDistAllOrderDetail.seg_total | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2">
+                        <p>
+                            <strong>GST Amount</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{myDistAllOrderDetail.gst_amt | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2">
+                        <p>
+                            <strong>Net Amount</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{myDistAllOrderDetail.order_amount | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2" ng-if="myDistAllOrderDetail.order_payment_type  && myDistAllOrderDetail.dist_id != 0">
+                        <p>
+                            <strong>{{myDistAllOrderDetail.order_payment_type}}</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{myDistAllOrderDetail.pay_amt}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2" ng-if="myDistAllOrderDetail.credit_followup && myDistAllOrderDetail.dist_id != 0">
+                        <p>
+                            <strong>Credit FollowUp</strong>
+                        </p>
+                        <p class="rate">
+                            <span class="pl-25">{{myDistAllOrderDetail.credit_followup | date:'dd-MMM-y'}}</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div ng-if="myDistAllOrderDetail.order_status=='Pending' && myDistAllOrderDetail.dist_id == 0" class="input-submit padding-16 no-padding-bottom" >
+            <a type="button" ng-click="edit_order()">EDIT ORDER</a>
+        </div>
+
+        
+        <div class="table-format pr-16 mt-15">
+            <table>
+                <tr>
+                    <th style="width:40px;">S.No</th>
+                    <th>Cat. No</th>
+                    <th style="width:40px;">QTY</th>
+                </tr>
+                <tr ng-repeat="item in myDistAllOrderDetail.order_item">
+                    <td>
+                        <strong>{{$index+1}}</strong>
+                    </td>
+                    <td>
+                        <p>{{item.cat_no}}<span ng-if="item.feature">({{item.feature}})</span></p>
+                    </td>
+                    <td>
+                        <p>{{item.qty}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="add-product-listing pl-16 pr-16">
+
+            <!-- Loop Start -->
+            <a class="list" ng-repeat="segment in myDistAllOrderDetail.order_segment">
+
+                <div class="details">
+                    <h2 class="status-bg" ng-class="segment.segment_status=='Approved'?'approved':(segment.segment_status=='Pending'?'pending':'reject')">{{segment.segment_status}}</h2>
+                    <div class="bx-1 mb-10 pr-50">
+                        <p># {{segment.segment_name}}</p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{segment.segment_total_mrp | setDecimal:2}}</span>
+                            <span class="icon-color">(MRP)</span>
+                        </p>
+                    </div>
+                    <div class="{{myDistAllOrderDetail.dist_id==0 ? 'bx-1 mb-10 pr-50' : 'bx-1 pr-50'}}">
+                        <div class="in-input" style="opacity: 0.5;">
+                            <label class="absolute font-12 icon-color mt-5 ml-10">Discount (%)</label>
+                            <input type="text" ng-value="{{segment.segment_discount}}" class="pl-90" style="box-sizing: border-box;" readonly>
+                        </div>
+
+                        <p class="rate mt-5">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{segment.segment_total | setDecimal:2}}</span>
+                        </p>
+                    </div>
+                    <div class="bx-1" ng-if="myDistAllOrderDetail.dist_id == 0">
+                        <div class="in-input-1">
+                            <label class="item-input item-select cs-select">
+                                <div class="input-label">
+                                    Distributor
+                                </div>
+                                <select disabled>
+                                    <option>{{segment.distributor}}</option>
+                                </select>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!-- Loop End... -->
+
+            <a class="list" ng-repeat="segment in orderDists" ng-if="myDistAllOrderDetail.dist_id == 0">
+             <div class="details">
+                    <div class="bx-2">
+                        <p>
+                            <strong>Distributor</strong>
+                        </p>
+                        <p class="rate">
+                            <span>{{segment.dr_name}}</span>
+                        </p>
+                    </div>
+                    <div class="bx-2">
+                        <p>
+                            <strong>MRP</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{segment.seg_tot_mrp| setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2">
+                        <p>
+                            <strong>Discount Amount</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{segment.seg_tot_mrp - segment.seg_tot | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2">
+                        <p>
+                            <strong>Sub Total</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{segment.seg_tot| setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2">
+                        <p>
+                            <strong>GST Amount</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{segment.gst_amt | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2">
+                        <p>
+                            <strong>Net Amount</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{segment.seg_tot_amt | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2" ng-if="segment.order_payment_type">
+                        <p>
+                            <strong>{{segment.order_payment_type}}</strong>
+                        </p>
+                        <p class="rate">
+                            <i class="inr-icon ml-10 mt-6"></i>
+                            <span class="pl-25 orange-color">{{segment.pay_amt | setDecimal:2}}</span>
+                        </p>
+                    </div>
+
+                    <div class="bx-2" ng-if="segment.credit_followup">
+                        <p>
+                            <strong>Credit FollowUp</strong>
+                        </p>
+                        <p class="rate">
+                            <span class="pl-25">{{segment.credit_followup | date:'dd-MMM-y'}}</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <div ng-if="myDistAllOrderDetail.order_status=='Reject' && myDistAllOrderDetail.dist_id != 0" class="padding-16">
+            <div class="heading">
+                <h2 class="font-14">Reason of Reject</h2>
+            </div>
+            <div class="cs-input">
+                <textarea class="font-12" ng-model="myDistAllOrderDetail.reason_reject" placeholder="Reason of reject" cols="30" rows="4" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- <div class="input-submit padding-16">
+            <a href="#/tab-ret/orderdt-ret">PROCEED</a>
+        </div> -->
+        <!-- <div class="input-submit padding-16" >
+            <a type="button" ng-click="openrt()">UPLOAD INVOICE</a>
+    
+        </div> -->
+<!-- 
+        <div class="invoice_info" >
+            <h1> Invoice Copy </h1>
+            <ul>
+                <li ng-repeat="img in images" ng-click="showinvoice(0,img)">
+                    
+                    <img src="{{upload_url+'/order_invoice'+img}}"/>  
+                    <!-- <img src="http://iamprayag.prayagindia.net/uploads/order_invoice60d190f20907c.png"/>   -->
+                    <!-- <img src="https://dummyimage.com/600x400/000/fff"> -->
+                </li>
+            </ul>
+        </div>
+
+    </ion-content>
+
+    <ion-footer-bar position="bottom" keyboard-attach class="dl-list-link" ng-if="myDistAllOrderDetail.dist_id != 0">
+        <ul>
+            <li>
+                <a ng-click="order_list({{myDistDetail.id}})">ORDER LIST</a>
+            </li>
+            <li>
+                <a ng-click="payment_dist_list({{myDistDetail.id}})">PAYMENT LIST</a>
+            </li>
+        </ul>
+    </ion-footer>
+
+   
+
+</ion-view>

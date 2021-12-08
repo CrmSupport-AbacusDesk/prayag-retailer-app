@@ -1,0 +1,87 @@
+<ion-view view-title="Upload Invoice" ng-init="assign_distributor()">
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+   
+    <ion-content>
+        <div class="m-32">
+            <form name="form" ng-submit="form.$valid ? submit_invoice() : '' " novalidate>
+                <div class="p-16">
+                    <p class="star-line">Mandatory Fields (<span class="redc">*</span>)</p>
+                    <div class="row cr-row no-margin no-padding">
+                        <div class="col-sm-12 full-width">
+                            <div class="no-padding font-14 full-width">
+                                Select Distributor <span class="redc">*</span>
+                            </div>
+                            
+                            <select class="no-padding ci-input h40" name="distributor" ng-model="inv_data.distributor" ng-change="get_assign_dis_id(inv_data.distributor)">
+                                <option value="">Select Name</option>
+                                <option ng-repeat="val in assign_distr_list">{{val.dr_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row cr-row no-margin no-padding pt-16">
+                        <div class="col-sm-12 full-width intimate-row">
+                            <label class="no-padding font-14 blackc">
+                                Invoice Date <span class="redc">*</span>
+                                <input type="date" class="ci-input" date-input name="inv_date" ng-model="inv_data.inv_date" ng-change="aa(inv_data.inv_date)" max="{{today_leave}}">
+                            </label>
+                        </div>                    
+                    </div>
+                    
+                    <div class="row intimate-row no-margin no-padding pt-16">
+                        <div class="col-sm-12 full-width pr-8">
+                            
+                            <div class="no-padding font-14">
+                                Invoice No. <span class="redc">*</span>
+                            </div>
+                            
+                            <input type="tel" class="scheme-input" name="inv_no" ng-model="inv_data.inv_no">
+                        </div>
+                        
+                    </div>
+                    <div class="row intimate-row no-margin no-padding pt-16">
+                        <div class="col-sm-12 full-width pr-8">
+                            <div class="no-padding font-14">
+                                Invoice Amount <span class="redc">*</span>
+                            </div>
+                            <input type="tel" class="scheme-input" name="inv_amt" ng-model="inv_data.inv_amt">
+                        </div>                    
+                    </div>
+                </div>
+                
+                <div class="upload-plus-icon padding-16 no-padding-bottom pt-0">
+                    <div class="">
+                        Upload Document <span class="redc">*</span>
+                    </div>
+                    
+                    <ul>
+                        <li ng-repeat="mediadatas in mediaData">
+                            
+                            <label>
+                                
+                                <button type="button" class="opt-delete" ng-click="delete_img($index)">
+                                    <i class="material-icons">delete_sweep</i>
+                                </button type="button">
+                                
+                                <img src="{{mediadatas.src}}">
+                                
+                            </label>
+                        </li>
+                        
+                        <li>
+                            <div class="label">
+                                <button type="button" ng-click="camera(1);">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="m-16">
+                    <button ng-style="{'opacity':(inv_data.distributor) ? 1 : 0.5}" ng-disabled="!inv_data.distributor || !inv_data.inv_date || !inv_data.inv_no || !inv_data.inv_amt" class="scheme-btn mt-32" >SAVE</button>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

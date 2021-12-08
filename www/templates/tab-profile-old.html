@@ -1,0 +1,56 @@
+<ion-view view-title="">
+    
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a href="#/tab/home" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+  
+    
+    <ion-content class="profile">
+        <div class="profile-head">
+            <div class="pr-icon">
+                <div class="outer">
+                    <div class="innear">
+                        <img src="{{upload_url + myProfileDetail.dr_image +'?'+getImageTimeStamp()}}" ng-if="myProfileDetail.dr_image" >
+                        <i class="material-icons" ng-if="!myProfileDetail.dr_image">person</i>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>{{myProfileDetail.contact_person}}</h2>
+        </div>
+
+        <div class="listed">
+            
+            <div class="submit">
+                <!-- <button><i class="material-icons">create</i></button> -->
+                <a href="#/tab/profile-edit"><i class="material-icons">create</i></a>
+
+            </div>
+            
+            <ul>
+                <li>
+                    <h2>Gender</h2>
+                    <p>Male</p>
+                </li>
+                <li>
+                    <h2>Date of birth</h2>
+                    <p>{{(myProfileDetail.date_birth) ? (formatDate(myProfileDetail.date_birth) | date:'d MMM yyyy') : ''}}</p>
+                </li>
+                <li>
+                    <h2>City</h2>
+                    <p>{{myProfileDetail.taluk_name}}</p>
+                </li>
+                <li>
+                    <h2>Postal Code</h2>
+                    <p>{{myProfileDetail.pincode}}</p>
+                </li>
+            </ul>
+        </div>
+
+        <button ng-click="point_my_loc()">POINT LOCATION</button>
+    </ion-content>
+    
+    
+</ion-view>

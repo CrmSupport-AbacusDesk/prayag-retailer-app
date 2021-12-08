@@ -1,0 +1,292 @@
+<ion-view view-title="Point Location">
+
+   <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+    
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <a href="#/tab/home" class="button button-icon icon ion-home fff font-18"></a>
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+
+    <ion-content class="pn-locc">
+
+        <input type="hidden" id="latitude" value="{{latitude}}">
+        <input type="hidden" id="longitude" value="{{longitude}}">
+        <div id="map" data-tap-disabled="false"></div>
+
+        <div onClick="locate()" class="map-location"><i class="material-icons">my_location</i></div>
+
+        <div class="point-loc">
+          <div ng-if="last_gps_add" class="poin-add padding-16 no-padding-bottom">
+            <p>Last Location</p>
+            <textarea ng-model="last_gps_add" readonly></textarea>
+          </div>
+          <!-- <div>
+                  <div >
+                      <label >
+                          <input type="text" id="loc">
+                      </label>
+                  </div>
+            </div> -->
+          <div>
+            <div class="input-submit padding-16">
+                <a type="button" ng-click="add_loc()">UPDATE</a>
+            </div>
+          </div>
+        </div>
+
+    </ion-content>
+
+    <script>
+    var locat;
+    $( document ).ready(function() {
+     setTimeout(function(){
+      var lat=  $('#latitude').val();
+      var long =  $('#longitude').val();
+      console.log(lat+" "+long);
+      var latLng = new google.maps.LatLng(lat, long);
+
+      var mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        //Wait until the map is loaded
+        google.maps.event.addListenerOnce(map, 'idle', function(){
+
+          var marker = new google.maps.Marker({
+              map: map,
+              draggable:true,
+              animation: google.maps.Animation.DROP,
+              position: latLng
+          })
+
+          function toggleBounce() {
+            if (marker.getAnimation() !== null) {
+              marker.setAnimation(null);
+            } else {
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+          }
+
+          var infoWindow = new google.maps.InfoWindow();
+
+          var geocoder = geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({ 'latLng': latLng }, function (results, status) {
+                          console.log("Hello");
+                          console.log(results);
+                          if(results)
+                          {
+                            len=results.length;
+                            console.log(len);
+                          }
+
+                          if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                               locat=results[0].formatted_address;
+                               infoWindow.setContent(results[0].formatted_address);
+                               infoWindow.open(map, marker);
+
+                               document.getElementById('loc').value = locat;
+                            }
+                          }
+                        });
+
+                        google.maps.event.addListener(marker,'drag',function(event) {
+                          var position = marker.getPosition();
+                          var lati = position.lat();
+                          var lngi = position.lng();
+
+                            var latLngi = new google.maps.LatLng(lati, lngi);
+                          var geocoder = geocoder = new google.maps.Geocoder();
+                                        geocoder.geocode({ 'latLng': latLngi }, function (results, status) {
+                                          console.log("Helloi");
+                                          console.log(results);
+                                          console.log(lati+" "+lngi);
+                                          if(results)
+                                          {
+                                            len=results.length;
+                                            console.log(len);
+                                          }
+
+                                          if (status == google.maps.GeocoderStatus.OK) {
+                                            if (results[0]) {
+                                               locat=results[0].formatted_address;
+                                               infoWindow.setContent(results[0].formatted_address);
+                                               infoWindow.open(map, marker);
+
+                                               document.getElementById('loc').value = locat;
+                                               document.getElementById('latitude').value = lati;
+                                              document.getElementById('longitude').value = lngi;
+                                            }
+                                          }
+                                        });
+                        });
+
+                        google.maps.event.addListener(marker,'dragend',function(event)
+                                {
+                                  var position = marker.getPosition();
+                                  var lato = position.lat();
+                                  var lngo = position.lng();
+
+                                    var latLngo = new google.maps.LatLng(lato, lngo);
+                                  var geocoder = geocoder = new google.maps.Geocoder();
+                                                geocoder.geocode({ 'latLng': latLngo }, function (results, status) {
+                                                  console.log("Helloo");
+                                                  console.log(results);
+
+                                                  if(results)
+                                                  {
+                                                    len=results.length;
+                                                    console.log(len);
+                                                  }
+                                                  if (status == google.maps.GeocoderStatus.OK) {
+                                                    if (results[0]) {
+                                                       locat=results[0].formatted_address;
+                                                       infoWindow.setContent(results[0].formatted_address);
+                                                       infoWindow.open(map, marker);
+
+                                                       document.getElementById('loc').value = locat;
+                                                    }
+                                                  }
+                                                });
+                        });
+
+
+        });
+
+
+
+        }, 200);
+      });
+
+    function locate()
+    {
+           setTimeout(function(){
+      var lat=  $('#latitude').val();
+      var long =  $('#longitude').val();
+      console.log(lat+" "+long);
+      var latLng = new google.maps.LatLng(lat, long);
+
+      var mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        //Wait until the map is loaded
+        google.maps.event.addListenerOnce(map, 'idle', function(){
+
+          var marker = new google.maps.Marker({
+              map: map,
+              draggable:true,
+              animation: google.maps.Animation.DROP,
+              position: latLng
+          })
+
+          function toggleBounce() {
+            if (marker.getAnimation() !== null) {
+              marker.setAnimation(null);
+            } else {
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+          }
+
+          var infoWindow = new google.maps.InfoWindow();
+
+          var geocoder = geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({ 'latLng': latLng }, function (results, status) {
+                          console.log("Hello");
+                          console.log(results);
+                          if(results)
+                          {
+                            len=results.length;
+                            console.log(len);
+                          }
+
+                          if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                               locat=results[0].formatted_address;
+                               infoWindow.setContent(results[0].formatted_address);
+                               infoWindow.open(map, marker);
+
+                               document.getElementById('loc').value = locat;
+                            }
+                          }
+                        });
+
+                        google.maps.event.addListener(marker,'drag',function(event) {
+                          var position = marker.getPosition();
+                          var lati = position.lat();
+                          var lngi = position.lng();
+
+                            var latLngi = new google.maps.LatLng(lati, lngi);
+                          var geocoder = geocoder = new google.maps.Geocoder();
+                                        geocoder.geocode({ 'latLng': latLngi }, function (results, status) {
+                                          console.log("Helloi");
+                                          console.log(results);
+                                          console.log(lati+" "+lngi);
+                                          if(results)
+                                          {
+                                            len=results.length;
+                                            console.log(len);
+                                          }
+
+                                          if (status == google.maps.GeocoderStatus.OK) {
+                                            if (results[0]) {
+                                               locat=results[0].formatted_address;
+                                               infoWindow.setContent(results[0].formatted_address);
+                                               infoWindow.open(map, marker);
+
+                                               document.getElementById('loc').value = locat;
+                                               document.getElementById('latitude').value = lati;
+                                              document.getElementById('longitude').value = lngi;
+                                            }
+                                          }
+                                        });
+                        });
+
+                        google.maps.event.addListener(marker,'dragend',function(event)
+                                {
+                                  var position = marker.getPosition();
+                                  var lato = position.lat();
+                                  var lngo = position.lng();
+
+                                    var latLngo = new google.maps.LatLng(lato, lngo);
+                                  var geocoder = geocoder = new google.maps.Geocoder();
+                                                geocoder.geocode({ 'latLng': latLngo }, function (results, status) {
+                                                  console.log("Helloo");
+                                                  console.log(results);
+
+                                                  if(results)
+                                                  {
+                                                    len=results.length;
+                                                    console.log(len);
+                                                  }
+                                                  if (status == google.maps.GeocoderStatus.OK) {
+                                                    if (results[0]) {
+                                                       locat=results[0].formatted_address;
+                                                       infoWindow.setContent(results[0].formatted_address);
+                                                       infoWindow.open(map, marker);
+
+                                                       document.getElementById('loc').value = locat;
+                                                    }
+                                                  }
+                                                });
+                        });
+
+        });
+        }, 200);
+    }
+
+      </script>
+</ion-view>

@@ -1,0 +1,26 @@
+<ion-view view-title="Schemes">
+    <ion-content>
+        
+        <div class="data-not-found" ng-hide="scheme_lists.length">
+            <div class="outer">
+                <div class="innear">
+                    <img src="img/data-not-found.svg" alt="">
+                    <h2>Temporarily , No Scheme Available</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="padding-16" ng-if="scheme_lists.length">
+            <div class="cs-list clr-bg" ng-repeat = "val in scheme_lists" ng-click="go_to_scheme_detail(val.id)">
+                <div class="top-content">
+                    {{val.scheme_title}}
+                </div>
+                <div class="botm-content">
+                    Vaildity <span>{{formatDate(val.start_date) | date:'d MMM y'}} To {{formatDate(val.end_date) | date:'d MMM y'}}</span>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    
+    <a class="fix-btn" href="#/tab/upload_invoice"><i class="material-icons">add</i></a>
+</ion-view>

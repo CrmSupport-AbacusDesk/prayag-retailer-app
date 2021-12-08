@@ -1,0 +1,90 @@
+<ion-view view-title="Order Detail">
+    
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+    
+    <ion-content>
+        <form name="Confirmform">
+            <div class="custome-date-picker no-padding-bottom">
+                <ul>
+                    <li><a href="" ng-click="sub_date()"><i class="material-icons">keyboard_arrow_left</i></a></li>
+                    <li><a href=""><span>{{formatDate(currentDate)  | date:  'MMMM dd, y'}}</span></a></li>
+                    <li><a href="" ng-click="add_date()"><i class="material-icons">keyboard_arrow_right</i></a></li>
+                </ul>
+            </div>
+            
+            <!--         <label class="item-input item-select cs-select">
+                <div class="input-label">
+                    Payment Type
+                </div>
+                <select ng-model="payment_type" required>
+                    <option selected>Advance</option>
+                    <option>Credit</option>
+                </select>
+            </label>
+            
+            
+            <label class="item-input item-select cs-date cs-calender" ng-if="payment_type=='Credit'">
+                <div class="input-label">
+                    Next Follow up Date
+                </div>
+                <input type="date" ng-model="next_followup_date" ng-change="date_val(next_followup_date)" required>
+            </label> -->
+            
+            <div class="user-list small-icon top-border-remove">
+                <div class="list">
+                    <!-- looP start -->
+                    <div class="item item-avatar pl-16" ng-repeat="value in order_lst">
+                        <h2 class="mt-5 pull-left">{{value.dist}}</h2>
+                        <p class="tl-sales no-padding-right mt-5 pull-right"><i class="inr-icon ml-10 mt-5"></i><span class="pl-25">{{value.after_gst_amt}}</span></p>
+                        
+                        <ul class="list-form">
+                            <li class="mb-10">
+                                <select ng-model="payment_data.payment_type[$index]" required>
+                                    <option value="">Payment Type</option>
+                                    <option>Advance</option>
+                                    <option>Credit</option>
+                                </select>
+                            </li>
+                            <li ng-if="payment_data.payment_type[$index]=='Advance'" class="mb-10">
+                                <select ng-model="payment_data.payment_mode[$index]" required>
+                                    <option value="">Payment Mode</option>
+                                    <option value="Cash">CASH</option>
+                                    <option value="Cheque">CHEQUE</option>
+                                    <option value="Neft">NEFT</option>
+                                </select>
+                            </li>
+                            <li ng-if="payment_data.payment_type[$index]=='Credit'" class="cs-indate mb-10">
+                                <label>
+                                    <input class="font-12" type="date" date-input ng-model="payment_data.next_followup_date[$index]"  min="{{today_leave}}" style="box-sizing: inherit;" ng-change="date_val(payment_data.next_followup_date[$index])" required>
+                                </label>
+                            </li>
+                            <li ng-if="payment_data.payment_type[$index]=='Advance'">
+                                <input class="font-12" type="number" string-to-number style="box-sizing: inherit;" placeholder="Amount" ng-model="payment_data.order_amt[$index]" name="tot" min="1" max="{{value.after_gst_amt}}" required>
+                                <span class="error-left relative" ng-if="Confirmform.tot.$error.min">* Value Can't be 0 or Less</span>
+                                <span class="error-left relative" ng-if="Confirmform.tot.$error.max">* Cannot Exceed Order Value</span>
+                            </li>
+                            <li ng-if="payment_data.payment_type[$index]=='Advance' && payment_data.payment_mode[$index]=='Cheque'">
+                                <input class="font-12" type="text" style="box-sizing: inherit;" placeholder="Cheque No." ng-model="payment_data.order_cno[$index]" required>
+                            </li>
+                            <li ng-if="payment_data.payment_type[$index]=='Advance' && payment_data.payment_mode[$index]=='Neft'">
+                                <input class="font-12" type="text" style="box-sizing: inherit;" placeholder="Transaction No." ng-model="payment_data.order_ref[$index]" required>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <!-- looP end -->                
+                </div>
+            </div>
+            
+            <div class="input-submit padding-16">
+                <a ng-click="Confirmform.$invalid ? '' :confirm_order()" ng-style="{'opacity':Confirmform.$invalid? 0.5 : 1}" >CONFIRM ORDER</a>
+            </div>
+        </form>
+        
+    </ion-content>
+    
+</ion-view>

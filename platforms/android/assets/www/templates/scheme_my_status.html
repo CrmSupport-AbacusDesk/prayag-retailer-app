@@ -1,0 +1,40 @@
+<ion-view view-title="Invoice Detail">
+    
+   
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+   
+    
+    <ion-content style="background: #F6F6F6;">
+
+        <div class="padding-16">
+            <div class="list-box {{invoice_details.status == 'Pending' || invoice_details.status == 'Suspect' ? 'pending' : 'approved'}}">
+                <div class="head-content">
+                    <p>{{formatDate(invoice_details.date_created) | date:'d MMM y'}}</p>
+                    <p>#INV-{{invoice_details.invoice_no}}</p>
+                </div>
+                <div class="center-content padding-10">
+                    <p>{{invoice_details.party_name}}</p>
+                </div>
+                <div class="bottomcontent">
+                    <ul>
+                        <li> &#8377;  {{invoice_details.invoice_amount}}</li>
+                        <li class="">{{invoice_details.status}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+         
+        <!-- ng-if="images.length > 0" -->
+
+        <div class="invoice_info" >
+            <h1>Invoice Copy</h1>
+            <ul>
+                <li ng-repeat = "img in invoice_images" ng-click="showImages(0, img.image_name)">
+                    <img src="{{upload_url1 + img.image_name}}"> 
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>

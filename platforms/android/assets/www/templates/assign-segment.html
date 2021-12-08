@@ -1,0 +1,31 @@
+<ion-view view-title="Become a Partner" hide-nav-bar="true">
+    <ion-content class="become-partner">
+        <div class="header">
+            <!-- BACKBTN ICON START -->
+            <a ng-click="skip_func()" class="cs-backbtn right button button-icon icon ion-android-arrow-forward fff" style="z-index:9;"></a>
+            <!-- BACKBTN ICON END... -->
+            <div class="logo text-center animated pulse">
+                <img src="img/white-logo.svg" alt="">
+            </div>
+        </div>
+
+        <div class="form-data">
+            <h2 class="heading-c">Assign Segment</h2>
+
+            <form >
+                <div class="cs-check-right">
+                    <ion-checkbox ng-model="check_all" ng-change="format(check_all,'')">Select All</ion-checkbox>
+                </div>
+                <ul>
+                        <ion-checkbox  ng-repeat="seg in segment_names" ng-model="seg_select[$index]" ng-click="format('null',$index)" value="{{seg}}" ng-checked="check_all">{{seg}} </ion-checkbox>
+                    <li>
+                        <div class="input-submit">
+                            <input type="submit" value="submit" ng-click="add_dr_seg()">
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+    </ion-content>
+</ion-view>

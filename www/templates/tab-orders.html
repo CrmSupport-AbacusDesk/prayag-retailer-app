@@ -1,0 +1,57 @@
+<ion-view view-title="Orders">
+    
+        <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <!-- <a ng-click="order_list(0)" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a> -->
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <!-- <a href="#/tab/home" class="button button-icon icon ion-home fff font-24"></a> -->
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+
+    <ion-content>
+        <div class="data-not-found" ng-hide="myDistAllOrderList.length">
+            <div class="outer">
+                <div class="innear">
+                    <img src="img/data-not-found.svg" alt="">
+                    <h2>Temporarily , No Order Available</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-listing" ng-if="myDistAllOrderList.length">
+            
+        <a class="list re-border" ng-click="order_detail(0, {{list.order_id}})" ng-repeat="list in myDistAllOrderList ">
+            <div class="heading-header">
+                    <div class="date">
+                        <span class="orange-color">{{formatDate(list.order_date)|  date: 'dd'}}</span><br>{{formatDate(list.order_date)|  date: 'MMM'}}
+                    </div>
+                    <div class="order-no">
+                        <p><strong>Order No. &nbsp;: &nbsp;</strong> #{{list.order_id}}</p>
+                        <!-- <p class="status"><strong>{{list.order_status}}</strong></p> -->
+                    </div>
+            </div>
+
+            <div class="details">
+                    <div class="bx-1 mb-10 pr-50">
+                        <p><strong class="w70">Created By</strong><strong>: &nbsp; &nbsp;</strong>{{list.order_creator}}</p>
+                        <p><strong class="w70">Segment</strong><strong>: &nbsp; &nbsp;</strong>{{list.segment_name}}</p>
+                        <i class="material-icons icon-color font-16 top-15">keyboard_arrow_right</i>
+                    </div>
+                    <div class="bx-2">
+                        <p><strong class="w70">Total Item</strong><strong>: &nbsp; &nbsp;</strong>{{list.order_qty}}</p>
+                        <p class="rate"><i class="inr-icon ml-10 mt-7"></i><span class="pl-25 orange-color">{{list.order_amount | setDecimal:2}}</span></p>
+                    </div>
+            </div>
+         </a>
+        
+        </div>
+    </ion-content>
+    
+    <a ng-click="add_product_ret(2)" class="pluse-icon blue-bg">
+        <i class="material-icons fff">add</i>
+    </a>
+</ion-view>

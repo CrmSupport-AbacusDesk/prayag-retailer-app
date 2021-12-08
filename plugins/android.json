@@ -1,0 +1,71 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-background-download": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PLAY_SERVICES_LOCATION_VERSION": "16.+",
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-image-picker": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "27.+",
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova.plugins.diagnostic": {
+      "ANDROID_SUPPORT_VERSION": "28.+",
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.ab_prayag.retailer"
+    }
+  }
+}

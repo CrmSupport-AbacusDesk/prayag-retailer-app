@@ -1,0 +1,52 @@
+<ion-view view-title="Gallery">
+    
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <!-- <a href="#/tab/home" class="button button-icon icon ion-home fff font-24"></a> -->
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+    
+    <ion-content>
+
+        <div class="padding-16 camera-icon">
+            <a ng-click="camera_click(1);">
+                <img src="img/camera-icon.svg">
+            </a>
+        </div>
+
+        <div class="album-type padding-10 no-padding-top no-padding-bottom">
+            <a href="#." class="ab-headeing">
+                <div class="heading">
+                    <h2>{{myDocAddGallaryList[0].document_title}}</h2>
+                </div>
+                <p class="date_p">{{formatDate(myDocAddGallaryList[0].date_created) | date: 'd-M-yyyy'}}</p>
+            </a>
+        </div>
+        <div class="gallery">
+            <ul>
+
+                <li ng-repeat="data in mediaData">
+                   <a href=""><img ng-src="{{ data.src }}" alt=""></a>
+                </li>
+
+                <li ng-repeat="list in myDocAddGallaryList">
+                  <a href=""><img src="{{ (list.image_name) ? upload_url + list.image_name : '' | trustUrl }}" alt=""></a>
+                </li>
+            </ul>
+           
+            <div class="clearfix"></div>
+        </div>
+
+         <div class="input-submit padding-16">
+               <a ng-click="doc_upload();">SUBMIT</a>
+         </div>
+    </ion-content>
+
+    
+</ion-view>

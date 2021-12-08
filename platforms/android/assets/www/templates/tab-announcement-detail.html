@@ -1,0 +1,59 @@
+<ion-view view-title="Announcements" >
+
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <a href="#/home" class="button button-icon icon ion-home fff font-18"></a>
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+
+
+    <ion-content>
+        <div class="data-not-found" ng-hide="myNoticeList.length">
+            <div class="outer">
+                <div class="innear">
+                    <img src="img/data-not-found.svg" alt="">
+                    <h2>Temporarily , No Announcement Available</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-listing ann-list" ng-if="myNoticeList.length">
+            <!-- Loop Start -->
+            <div class="list" ng-repeat="annoulist in myNoticeList  | filter:{id:ann_id}:true" ng-click="notice_detail(annoulist.id)">
+                <div class="heading-header pl-10">
+                    <div class="order-no">
+                        <p><strong>{{annoulist.heading}}</strong></p>
+                    </div>
+                </div>
+                
+                <div class="details">
+                    <p class="text-right icon-color font-12">{{formatDate(annoulist.notice_date) | date: 'dd MMM y'}}</p>
+                    <div>
+                        <p class="pr-70" style="color: #000;">{{annoulist.description}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Loop End... -->
+
+            <div class="upload-plus-icon padding-16 no-padding-bottom">
+
+                <ul>
+                    <li ng-repeat="val in myNoticeDet" class="relative">
+                        <label ng-click="showImages(0,val.notice_image)">
+                            <img ng-if="val.notice_image" src="{{upload_url+val.notice_image}}">
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+        </div>  
+    </ion-content>
+
+
+</ion-view>

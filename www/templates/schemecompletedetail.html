@@ -1,0 +1,45 @@
+<ion-view view-title="Scheme Detail">
+    <ion-nav-buttons side="left">
+        <a ng-click="doTheBack()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    
+    <ion-content style="background: #ffffff;">
+        
+        <div class="cs-detail">
+            <p><strong>Name</strong> {{scheme_data.scheme_title | titlecase}}</p>
+            <p><strong>Vaildity</strong>{{formatDate(scheme_data.start_date) | date:'d MMM y'}} To {{formatDate(scheme_data.end_date) | date:'d MMM y'}}</p>
+            <p><strong>Description</strong>{{scheme_data.description ? scheme_data.description : 'N/A'}}</p>
+            <p><strong>Term & Condition</strong><span class="pl-2" ng-bind-html="scheme_data.terms_and_conditions"></span></p>
+        </div>
+        
+        <div class="padding-16">
+            <!-- <div class="nrml-heading">
+                <h2>Target Information</h2>
+            </div>
+            <div class="cs-flex">
+                <div class="cs-column">
+                    <p>Target</p>
+                    <p><span>&#8377; {{min_price}}</span> <span ng-if="max_price != 0 ">- &#8377; {{max_price}}</span></p>
+                </div>
+                <div class="cs-column">
+                    <p>Achieved</p>
+                    <span>&#8377; {{achieved_amount ? achieved_amount : 0}}</span>
+                </div>
+            </div> -->
+            
+            <div class="nrml-heading mt-16">
+                <h2>Gift Gallery ({{scheme_data.scheme_type}})</h2>
+            </div>
+            
+            <div class="content-list" ng-repeat = "data in scheme_detail" style="background: rgb(238, 215, 253)">
+                <div class="upper">
+                    <div class="description">
+                        <p ng-if="scheme_data.scheme_type != 'Amount Wise'"><strong>{{scheme_data.scheme_type == 'Segment wise' ? 'Segment' : 'Category Number' }} : </strong>{{data.scheme_type | titlecase}}</p>
+                        <p><strong>{{data.amount_type | titlecase}} : </strong>₹ {{data.amount_from}}.00 {{data.amount_to ? ' - ₹ '+data.amount_to+'.00' : ''}}</p>
+                        <p><strong>Gift Name : </strong>{{data.gift_type}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

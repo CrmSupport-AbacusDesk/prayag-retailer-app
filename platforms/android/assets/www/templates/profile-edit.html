@@ -1,0 +1,66 @@
+<ion-view view-title="">
+    
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <a href="#/tab/profile" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+   
+    <ion-content class="profile">
+        
+        <div class="profile-head">
+            
+            <div class="pr-icon">
+                <div class="outer">
+                    <div class="innear">
+                        <img src="{{upload_url + myProfileDetail.dr_image}}" ng-if="myProfileDetail.dr_image">
+
+                        <i class="material-icons" ng-if="!myProfileDetail.dr_image">person</i>
+                    </div>
+                </div>
+                
+                <button  ng-click="camera_click(2);"><i class="material-icons">photo_camera</i></button>
+            </div>
+            
+            <h2>&nbsp;</h2>
+            
+        </div>
+        <div class="listed">
+            
+            <div class="submit">
+                <button ng-click="profile_update(1)"><i class="material-icons">keyboard_arrow_right</i></button>
+                <!-- <a><i class="material-icons">keyboard_arrow_right</i></a> -->
+                <!-- <label>
+                    <i class="material-icons">keyboard_arrow_right</i>
+                    <input type="submit" style="display: none;">
+                </label> -->
+            </div>
+            
+            <ul>
+                <li>
+                    <h2>Name</h2>
+                    <input type="text" ng-model="myProfileDetail.contact_person">
+                </li> 
+                <li>
+                    <h2>Gender</h2>
+                    <input type="text" value="Male">
+                </li>
+                <li>
+                    <h2>Date of birth</h2>
+                    <label><input date-input type="date" ng-model="myProfileDetail.date_birth"></label>
+                </li>
+                <li>
+                    <h2>City</h2>
+                    <input type="text" ng-model="myProfileDetail.taluk_name">
+                </li>
+                <li>
+                    <h2>Postal Code</h2>
+                    <input type="text" ng-model="myProfileDetail.pincode">
+                </li>
+            </ul>
+        </div>
+        
+    </ion-content>
+    
+    
+</ion-view>

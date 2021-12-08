@@ -1,0 +1,49 @@
+<ion-view view-title="Login" name="login-view" hide-nav-bar="true">
+    <ion-content class="login">
+        
+        <div class="modal-pic">
+            <img src="img/login-bg-new.jpg" alt="">
+        </div>
+        
+        <div class="padding no-padding-top">
+            <div class="logo text-center animated pulse">
+                <img src="img/white-logo.svg" alt="">
+            </div>
+            
+            <div class="list">
+
+              <form ng-submit="login()">
+
+                <label class="item item-input item-floating-label">
+                    <i class="material-icons">perm_identity</i>
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="data.username" placeholder="Username">
+                </label>
+                
+                <label class="item item-input item-floating-label">
+                    <i class="material-icons rotate">vpn_key</i>
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="data.password" placeholder="Password" class="no-margin-bottom">
+                </label>
+                
+                <!-- <p class="text-right"><a href="#.">Forgot Password ?</a></p> -->
+                
+                <div class="btnn left pr-8">
+                    <!-- <button>LOGIN</button> -->
+                    <input type="submit" value="SIGN IN">
+                    <!-- <a>SIGN IN</a> -->
+                </div>
+
+              </form>
+                
+                <div class="btnn right pl-8">
+                    <!-- <button>LOGIN</button> -->
+                    <!-- <input type="submit" value="LOGIN"> -->
+                    <a ng-click="add_lead()">SIGN UP</a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

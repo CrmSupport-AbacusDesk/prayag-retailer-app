@@ -1,0 +1,183 @@
+<ion-view view-title="Add Order">
+    
+    <!-- BACKBTN ICON START -->
+    <ion-nav-buttons side="left">
+        <span ng-if="!edit_enable"><a ng-click="ask_perm()" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a></span>
+        <span ng-if="edit_enable"><a ng-click="order_list(0)" class="cs-backbtn button button-icon icon ion-android-arrow-back fff"></a></span>
+    </ion-nav-buttons>
+    <!-- BACKBTN ICON END-->
+    
+    <!-- HOME ICON START -->
+    <ion-nav-buttons side="right">
+        <a href="#/tab/home" class="button button-icon icon ion-home fff font-18"></a>
+    </ion-nav-buttons>
+    <!-- HOME ICON END-->
+    
+    <ion-content>
+        <form name="AddProdform">
+            <div class="add-css-select" ng-init="$root.valll=1">
+                <searchandselect selecteditem="$root.default_product_select" values="dr_default_segment" key1="seg_name" key="seg_name" totalrecords="dr_default_segment.length" onscroll="select_all(searchKey, pagenumber)" ng-click="$root.search_data.val=2"></searchandselect>
+            </div>
+            
+            <div class="add-css-select" ng-init="$root.valll=2">
+                <searchandselect selecteditem="$root.default_product_select" values="$root.dr_default_category" key1="id" key="cat_nos" totalrecords="$root.dr_default_category.length" onscroll="select_all_cat(searchKey, pagenumber)" ng-click="$root.search_data.val=3"></searchandselect>
+            </div>
+            
+            <div class="add-css-select" ng-init="$root.valll=3">
+                <searchandselect selecteditem="$root.default_product_select" values="$root.show_default_product" key1="id" key="product" totalrecords="$root.default_products.length" onscroll="select_all_prod(searchKey, pagenumber)" ng-click="$root.search_data.val=4"></searchandselect>
+            </div>
+            <div class="padding-16" ng-if="$root.prod_feature[0].feature">
+                <div class="heading">
+                    <h2>Feature</h2>
+                </div>
+                <div class="cs-two-radio">
+                    <div class="labels wp100" style="text-align: left;" ng-init="feat?'':feat=$root.prod_feature[0].feature">
+                        <label class="wp100 pt-10 pb-10 no-margin-left" ng-repeat="features in $root.prod_feature" style="float: none; display: block;">
+                            <input type="radio" ng-model="feat" ng-value="features.feature" ng-click="value($index)" name="radio" required style="height: 15px;" class="mt-3">
+                            <span>{{features.feature}}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row intimate-row no-margin-bottom mb-12" ng-init="data.prod_qty=1">
+                <div class="col">
+                    <div class="input-label">
+                        Quantity
+                    </div>
+                    <input type="number" ng-model="data.prod_qty" class="in-text" required>
+                </div>
+                <div class="col text-left">
+                    <div class="input-label">
+                        Rate Per Unit
+                    </div>
+                    
+                    <p class="mll-8 no-margin mt-6"><i class="inr-icon ml-10 mt-5"></i>
+                        <span class="pl-25 orange-color" ng-hide="product_data[0].price || $root.prod_feature[ind_value].price || $root.prod_feature[ind_value].prod_state_price || prod_state_price.price">0</span>
+                        
+                        <span class="pl-25 orange-color" ng-if="$root.prod_feature[ind_value].price && !$root.prod_feature[ind_value].prod_state_price">{{$root.prod_feature[ind_value].price}}</span>
+                        
+                        <span class="pl-25 orange-color" ng-if="$root.prod_feature[ind_value].price && $root.prod_feature[ind_value].prod_state_price">{{$root.prod_feature[ind_value].prod_state_price}}</span>
+                        
+                        <span class="pl-25 orange-color" ng-if="!$root.prod_feature[ind_value].price && product_data[0].price && !$root.prod_feature[ind_value].prod_state_price && !prod_state_price.price">{{product_data[0].price}}</span>
+                        
+                        <span class="pl-25 orange-color" ng-if="!$root.prod_feature[ind_value].price && product_data[0].price && !$root.prod_feature[ind_value].prod_state_price && prod_state_price.price">{{prod_state_price.price}}</span>
+                    </p>
+                    
+                </div>
+                <div class="col text-right">
+                    <div class="input-label no-padding-right">
+                        Amount
+                    </div>
+                    
+                    <p class="no-margin mt-6"><i class="inr-icon ml-10 mt-5"></i>
+                        
+                        <span class="pl-25 orange-color" ng-hide="product_data[0].price || $root.prod_feature[ind_value].price || $root.prod_feature[ind_value].prod_state_price || prod_state_price.price">0</span>
+                        
+                        <span class="pl-25 orange-color" ng-if="$root.prod_feature[ind_value].price && !$root.prod_feature[ind_value].prod_state_price"><font ng-if="!data.prod_qty">0</font><font ng-if="data.prod_qty">{{data.prod_qty*$root.prod_feature[ind_value].price}}</font></span>
+                        
+                        <span class="pl-25 orange-color" ng-if="$root.prod_feature[ind_value].price && $root.prod_feature[ind_value].prod_state_price"><font ng-if="!data.prod_qty">0</font><font ng-if="data.prod_qty">{{data.prod_qty*$root.prod_feature[ind_value].prod_state_price}}</font></span>
+                        
+                        <span class="pl-25 orange-color" ng-if="!$root.prod_feature[ind_value].price && !$root.prod_feature[ind_value].prod_state_price && product_data[0].price && !prod_state_price.price"><font ng-if="!data.prod_qty">0</font><font ng-if="data.prod_qty">{{data.prod_qty*product_data[0].price}}</font></span>
+                        
+                        <span class="pl-25 orange-color" ng-if="!$root.prod_feature[ind_value].price && !$root.prod_feature[ind_value].prod_state_price && product_data[0].price && prod_state_price.price"><font ng-if="!data.prod_qty">0</font><font ng-if="data.prod_qty">{{data.prod_qty*prod_state_price.price}}</font></span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="table-format pr-16">
+                <div class="padding">
+                    <div class="pluse relative wp100" style="right: inherit;" ng-style="{'opacity':product_data[0].product_name? 1 : 0.5}">
+                        <a ng-click="product_data[0].product_name?addtocart(data.prod_qty,product_data[0].product_name,$root.prod_feature[0].feature ? ($root.prod_feature[ind_value].prod_state_price ? $root.prod_feature[ind_value].prod_state_price : $root.prod_feature[ind_value].price) : (prod_state_price.price ? prod_state_price.price : product_data[0].price),$root.prod_feature[ind_value].feat_id,$root.prod_feature[ind_value].feature):''">
+                            <i class="material-icons fff">add</i>
+                        </a>
+                    </div>
+                </div>
+                
+                <table>
+                    <tr>
+                        <th style="width:40px;">S.No</th>
+                        <th>Cat. No</th>
+                        <th class="w80 center-align">QTY</th>
+                    </tr>
+                    <tr ng-repeat="cart in cart_arr">
+                        <td>
+                            <strong>{{$index+1}}</strong>
+                        </td>
+                        <td>
+                            <p>{{cart.catg_no}}<span ng-if="cart.feature">({{cart.feature}})</span></p>
+                            
+                            <button class="delete" ng-click="del_cart($index)">
+                                <i class="material-icons">delete_sweep</i>
+                            </button>
+                        </td>
+                        <td>
+                            <span ng-if="!edit_enable">
+                                <p class="right-align pr-30">{{cart.quantity | number:0}}</p>
+                            </span>
+                            <span ng-if="edit_enable">
+                                <p ng-if="edit_enable_button" class="right-align pr-30">{{cart.quantity | number:0}}</p>
+                                <input ng-if="!edit_enable_button" type="tel" ng-model="cart.quantity" class="vl-edit" ng-click="save_qty_val(cart.quantity)" style="left: 8px;">
+                                <button class="delete">
+                                    <span ng-click="edit_enable_button=false"><i class="material-icons blue-color" ng-if="edit_enable_button">create</i></span>
+                                    <span ng-click="edit_enable_button=true; save_qty(cart.quantity,cart.catg_no,cart.segment_name,cart.amount)"><i class="material-icons green-color" ng-if="!edit_enable_button">check</i></span>
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+            
+            <div class="add-product-listing pl-16 pr-16">
+                
+                <!-- Loop Start -->
+                <a class="list" ng-if="seg_amt" ng-repeat="seg_det in seg_amt">
+                    <div class="details">
+                        <div class="bx-1 mb-10 pr-50">
+                            <p># {{seg_det.segment_name}}</p>
+                            <p class="rate">
+                                <i class="inr-icon ml-10 mt-6"></i>
+                                <span class="pl-25 orange-color" ng-hide="seg_det.price">0</span>
+                                <span class="pl-25 orange-color" ng-if="seg_det.price">{{seg_det.price}}</span>
+                                <span class="icon-color">(MRP)</span>
+                            </p>
+                        </div>
+                        <div class="bx-1 mb-15 pr-50">
+                            <div class="in-input">
+                                <label class="absolute font-12 icon-color mt-5 ml-10">Discount (%)</label>
+                                <input type="number" min="0" string-to-number ng-model="$root.disc_val[seg_det.segment_name]" ng-change="push_details(seg_det.segment_name,seg_det.price,$root.disc_val[seg_det.segment_name],data.dist_name[seg_det.segment_name].dr_name,data.dist_name[seg_det.segment_name].dr_image,data.dist_name[seg_det.segment_name].id,1)" readonly="true" class="pl-90" style="box-sizing: border-box;">
+                            </div>
+                            <p class="rate mt-5">
+                                <i class="inr-icon ml-10 mt-6"></i>
+                                <span class="pl-25 orange-color" ng-hide="seg_det.price">0</span>
+                                <span class="pl-25 orange-color" ng-if="seg_det.price">{{seg_det.price - (seg_det.price*$root.disc_val[seg_det.segment_name])/100 | setDecimal:2}}</span>
+                            </p>
+                        </div>
+                        <div class="bx-1">
+                            <div class="in-input-1">
+                                <label class="item-input item-select cs-select">
+                                    <div class="input-label">
+                                        Distributor
+                                    </div>
+                                    <select ng-model="data.dist_name[seg_det.segment_name]" ng-options="dist.dr_name for dist in dist_array[$index].distributors  | filter: { segment_name : seg_det.segment_name}" ng-change="push_details(seg_det.segment_name,seg_det.price,$root.disc_val[seg_det.segment_name],data.dist_name[seg_det.segment_name].dr_name,data.dist_name[seg_det.segment_name].dr_image,data.dist_name[seg_det.segment_name].id)" name="dist_{{$index}}" required >
+                                        <option value="">Choose a Distribtor</option>
+                                    </select>
+                                </label>
+                                
+                                <span class="error-left relative" ng-show="AddProdform['dist_' + $index].$invalid">Select Distribtor</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="input-submit padding-16" >
+                <a ng-if="!edit_enable" type="button" ng-click="valid?fetch_all(1):''" ng-style="{'opacity':valid? 1 : 0.5}">PROCEED</a>
+                <a ng-if="edit_enable" type="button" ng-click="valid?fetch_all(2):''" ng-style="{'opacity':valid? 1 : 0.5}">PROCEED</a>
+            </div>
+        </form>
+    </ion-content>
+    
+</ion-view>

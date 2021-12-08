@@ -1,0 +1,16 @@
+{
+  "name": "Prayag Retailer",
+  "integrations": {
+    "gulp": {},
+    "cordova": {}
+  },
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ],
+  "pro_id": "5b45bf4f",
+  "id": "5b45bf4f"
+}

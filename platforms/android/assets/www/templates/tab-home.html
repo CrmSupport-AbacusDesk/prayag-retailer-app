@@ -1,0 +1,97 @@
+<ion-view view-title="Home" hide-nav-bar="true">
+    <ion-content class="home">
+        <div class="slide">
+            <div class="zoominheader">
+                <div class="zoomoutheader"></div>
+            </div>
+            <!-- <img src="img/slide.jpg" alt=""> -->
+        </div>
+        
+        <div class="heading bl">
+            <h2>{{company_name}}</h2>
+        </div>
+        
+        <div class="home-links">
+            <a ng-click="distributor_list()">
+                <div class="links outer">
+                    <div class="innear">
+                        <div class="icon">
+                            <img src="img/distributer-icon.svg" alt="">
+                        </div>
+                        <h2>Distributors</h2>
+                    </div>
+                </div>
+            </a>
+            <a ng-click="order_list(0)">
+                <div class="links outer">
+                    <div class="innear">
+                        <div class="icon">
+                            <img src="img/dwr-icon.svg" alt="">
+                        </div>
+                        <h2>Order List</h2>
+                    </div>
+                </div>
+            </a>
+            <a ng-click="payment_all_list()">
+                <div class="links outer">
+                    <div class="innear">
+                        <div class="icon">
+                            <img src="img/payment-icon.svg" alt="">
+                        </div>
+                        <h2>Payments</h2>
+                    </div>
+                </div>
+            </a>
+            <a ng-click="gift_update_list(0)">
+                <div class="links outer">
+                    <div class="innear">
+                        <div class="icon">
+                            <img src="img/tabs-icons/pop-icon-active.svg" alt="">
+                        </div>
+                        <h2>Pop & Gift</h2>
+                    </div>
+                </div>
+            </a>
+            <a ng-click="notice_list()">
+                <div class="links outer">
+                    <div class="innear">
+                        <div class="icon">
+                            <img src="img/announcement-icon.svg" alt="">
+                        </div>
+                        <h2>Announcements</h2>
+                    </div>
+                </div>
+            </a>
+            <a ng-click="doc_add_list()">
+                <div class="links outer">
+                    <div class="innear">
+                        <div class="icon">
+                            <img src="img/tabs-icons/image-icon-active.svg" alt="">
+                        </div>
+                        <h2>Images & documents</h2>
+                    </div>
+                </div>
+            </a>
+            <a ng-click="go_to_schemelist()">
+                <div class="links outer">
+                    <div class="innear">
+                        <div class="icon">
+                            <img src="img/tabs-icons/scheme.svg" alt="">
+                        </div>
+                        <h2>Scheme</h2>
+                    </div>
+                </div>
+            </a>
+            <a ng-click="go_to_status_list()">
+                <div class="links outer">
+                    <div class="innear">
+                        <div class="icon">
+                            <img src="img/tabs-icons/invoice.svg" alt="">
+                        </div>
+                        <h2>Invoice</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
